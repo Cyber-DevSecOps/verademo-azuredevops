@@ -53,8 +53,8 @@ jobs:
           targetType: "inline"
           script: |
             curl -fsS https://tools.veracode.com/veracode-cli/install | sh
-            export VERACODE_API_ID=$(VID)
-            export VERACODE_API_KEY=$(VKEY)
+            export VERACODE_API_ID=$(VERACODE_API_ID)
+            export VERACODE_API_KEY=$(VERACODE_API_KEY)
             ./veracode scan --type repo --source https://github.com/bridgecrewio/terragoat -o terragoat.json  
 
       - task: PublishBuildArtifacts@1
@@ -97,7 +97,7 @@ jobs:
         artifact: WARCompiled
 
   - job: VeracodePipelineScan
-    displayName: "Veracode Scan Pipeline"
+    displayName: "Veracode Static Scan Pipeline"
     dependsOn: BuildAndTestVeraDemo
     steps:
       - download: current
@@ -117,7 +117,7 @@ jobs:
         artifact: VeracodePipelineScan
 
   - job: VeracodeUploadAndScan
-    displayName: "Veracode Upload and Scan"
+    displayName: "Veracode Static + Sca (Upload and Scan)"
     dependsOn: VeracodePipelineScan
     steps:
       - download: current
