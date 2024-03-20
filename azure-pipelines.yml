@@ -98,7 +98,7 @@ jobs:
 
   - job: VeracodePipelineScan
     displayName: "Veracode Scan Pipeline"
-    dependsOn: BuildAndTest
+    dependsOn: BuildAndTestVeraDemo
     steps:
       - download: current
         artifact: WARCompiled
