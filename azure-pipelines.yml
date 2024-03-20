@@ -75,7 +75,7 @@ jobs:
             # Generate File for credentials
             echo "api:" > ~/.veracode/veracode.yml
             echo "    key-id: $(VERACODE_API_KEY_ID)" >> ~/.veracode/veracode.yml
-            echo "    key-secret: $(VERACODE_API_KEY)" >> ~/.veracode/veracode.yml
+            echo "    key-secret: $(VERACODE_API_KEY_SECRET)" >> ~/.veracode/veracode.yml
 
             ./veracode scan --type repo --source https://github.com/bridgecrewio/terragoat -o terragoat.json  
 
