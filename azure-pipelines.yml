@@ -38,6 +38,12 @@ jobs:
 
       - task: PublishBuildArtifacts@1
         inputs:
+          PathtoPublish: "vulnerableWebDvwa_table.txt"
+          ArtifactName: "vulnerableWebDvwa_table.txt"
+          publishLocation: "Container"
+
+      - task: PublishBuildArtifacts@1
+        inputs:
           PathtoPublish: "vulnerableWebDvwa.json"
           ArtifactName: "vulnerableWebDvwa.json"
           publishLocation: "Container"
@@ -80,6 +86,12 @@ jobs:
             echo "    key-secret: $(VERACODE_API_KEY_SECRET)" >> ~/.veracode/veracode.yml
             ./veracode scan --type repo --source https://github.com/bridgecrewio/terragoat -f table -o terragoat_table.txt
             ./veracode scan --type repo --source https://github.com/bridgecrewio/terragoat -f json -o terragoat.json  
+
+      - task: PublishBuildArtifacts@1
+        inputs:
+          PathtoPublish: "terragoat_table.txt"
+          ArtifactName: "terragoat_table.txt"
+          publishLocation: "Container"
 
       - task: PublishBuildArtifacts@1
         inputs:
