@@ -12,8 +12,6 @@ variables:
 
 jobs:
   - job: BuildJob
-    pool:
-      vmImage: 'ubuntu-latest'
     steps:
     - script: |
         mkdir -p "$(Build.ArtifactStagingDirectory)/output"
