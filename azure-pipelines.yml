@@ -25,6 +25,7 @@ jobs:
       displayName: "Publicar artefactos"
 
   - job: VeracodeContainerScann
+    dependsOn: BuildJob
     displayName: "Veracode Container pipeline"
     steps:
       - task: Bash@3
@@ -76,6 +77,7 @@ jobs:
 
 
   - job: VeracodeIaCScann
+    dependsOn: VeracodeContainerScann
     displayName: "Veracode IaC and Secret Scann pipeline"
     steps:    
       - task: Bash@3
