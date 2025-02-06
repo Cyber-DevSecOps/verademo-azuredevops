@@ -14,6 +14,7 @@ jobs:
   - job: BuildJob
     steps:
     - script: |
+        echo "path: $(build.artifactstagingdirectory)"
         mkdir -p "$(Build.ArtifactStagingDirectory)/output"
         echo "Hola, Azure DevOps!" > "$(Build.ArtifactStagingDirectory)/output/mensaje.txt"
       displayName: "Crear archivo de ejemplo"
@@ -128,6 +129,7 @@ jobs:
             fi  
 
   - job: BuildAndTestVeraDemo
+    dependsOn: BuildJob
     displayName: "Build and Test"
     steps:
       - task: Maven@4
