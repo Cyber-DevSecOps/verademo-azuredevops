@@ -11,6 +11,21 @@ variables:
   - group: VERACODE_API
 
 jobs:
+  - job: BuildJob
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - script: |
+        mkdir -p "$(Build.ArtifactStagingDirectory)/output"
+        echo "Hola, Azure DevOps!" > "$(Build.ArtifactStagingDirectory)/output/mensaje.txt"
+      displayName: "Crear archivo de ejemplo"
+      
+    - task: PublishBuildArtifacts@1
+      inputs:
+        pathToPublish: '$(Build.ArtifactStagingDirectory)/output'
+        artifactName: 'drop'
+      displayName: "Publicar artefactos"
+
   - job: VeracodeContainerScann
     displayName: "Veracode Container pipeline"
     steps:
